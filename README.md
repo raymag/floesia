@@ -10,3 +10,4 @@ Take note that Floesia is still in development. Many features are still being de
 
 ## Contributing
 If you want to contribute to this project, take a look at the issues section, make a fork of this repository, be respectful with others and go on. All help is welcome. 
+Also, before contributing, be sure to read our [Contributing Guidelines](https://github.com/raymag/floesia/blob/main/CONTRIBUTING.md) and our [Code of Conduct](https://github.com/raymag/floesia/blob/main/CODE_OF_CONDUCT.md) since you need to agree with them before contributing to this repository.
