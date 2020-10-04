@@ -45,6 +45,20 @@ nav#navbar {
     background-color: var(--dark-white);
 }
 
+@media only screen and (min-width: 700px) {
+    #poems {
+        width: 60vw;
+        margin: auto;
+        margin-top: 90px;
+        border: none;
+        background: none;
+    }
+    .poem {
+        background: var(--white);
+        box-shadow: 3px 3px 4px #62D8A766;
+    }
+}
+
 .poem {
     margin: 15px auto;
     padding: 5px;
