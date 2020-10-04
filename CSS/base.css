@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap');
+
+* {
+    --primary: #62D8C2;
+    --second: #62D8A7;
+    --dark: #37504B;
+    --erased: #37504b73;
+    --white: #FEFEFE;
+    --dark-white: #FDFDFD;
+}
+
+body {
+    background-color: var(--dark-white);
+}
+
+nav#navbar {
+    background-color: var(--primary);
+    background: linear-gradient(45deg, var(--primary), var(--second));
+    color: var(--white);
+    font-weight: bold;
+    font-family: 'Roboto', monospace, Verdana, Tahoma, sans-serif;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+#navbar-brand h1{
+    padding: 0;
+    margin: 0;
+}
+
+#poems {
+    margin: 5px;
+    margin-top: 90px;
+    padding: 10px;
+    border: var(--primary) 2px solid;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: var(--dark-white);
+}
+
+@media only screen and (min-width: 700px) {
+    #poems {
+        width: 60vw;
+        margin: auto;
+        margin-top: 90px;
+        border: none;
+        background: none;
+    }
+    .poem {
+        background: var(--white);
+        box-shadow: 3px 3px 4px #62D8A766;
+    }
+}
+
+.poem {
+    margin: 15px auto;
+    padding: 5px;
+    border: var(--primary) solid 1px;
+    border-radius: 5px;
+    flex-wrap: wrap;
+    word-wrap: normal;
+    width: 100%;
+    background-color: var(--white);
+}
+.poem .body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.poem .body .title {
+    color: var(--dark);
+    text-align: center;
+    font-weight: 600;
+    width: 100%;
+}
+.poem .body .text {
+    width: 100%;
+    text-align: center;
+    overflow: auto;
+    resize: none;
+    border: none;
+    color: var(--dark);
+    margin-top: 5px;
+    background-color: #00000000;
+}
+.poem .info {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--erased);
+    border-top: var(--erased) solid 1px;
+    padding: 5px;
+}
