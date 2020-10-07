@@ -1,0 +1,84 @@
+.note
+{
+    text-align: center;
+    height: 100px;
+    
+    color: rgb(15, 15, 15);
+    font-weight: bold;
+    /* line-height: 80px; */
+    border-bottom: 1px solid rgb(199, 199, 199);
+    margin-bottom: 50px;
+    
+   
+}
+
+#noteHeader{
+    font-size: 24px;
+    padding-top: 3%;
+
+}
+
+#noteSubHeader{
+    font-weight: 500;
+}
+
+.form-content
+{
+    padding: 5%;
+    border: 1px solid #ced4da;
+    margin-bottom: 2%;
+  
+}
+.form-control{
+    border-radius:1.5rem;
+    text-align: center;
+   
+    
+}
+.row1,.row2{
+    border-radius:1.5rem;
+   
+    justify-content: center;
+   
+    
+}
+.row2{
+    margin-top: 2%;
+}
+
+.btnSubmit
+{
+    border:none;
+    border-radius:1.5rem;
+    padding: 1%;
+    width: 20%;
+    cursor: pointer;
+    background: #28a745;
+    color: #fff;
+    
+    
+}
+
+.submitButtonContainer{
+    text-align: center;
+   margin-top: 6%;
+    
+    
+}
+
+.login-form{
+    margin-top: 70px;
+    width: 50%;
+    height:150px; 
+    border: 1px solid #fff;
+    
+}
+
+.form-content{
+     
+    border: 1px solid rgb(194, 194, 194);
+    box-shadow: 5px 10px rgb(207, 207, 207);
+   
+   
+   
+}

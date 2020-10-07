@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap');
+
+* {
+    --primary: #62D8C2;
+    --second: #62D8A7;
+    --dark: #37504B;
+    --erased: #37504b73;
+    --white: #FEFEFE;
+    --dark-white: #FDFDFD;
+}
+
+body {
+    background-color: var(--dark-white);
+}
+
+nav#navbar {
+    background-color: var(--primary);
+    background: linear-gradient(45deg, var(--primary), var(--second));
+    color: var(--white);
+    font-weight: bold;
+    font-family: 'Roboto', monospace, Verdana, Tahoma, sans-serif;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1
+}
+#navbar-brand h1{
+    padding: 0;
+    margin: 0;
+}
+
+#poems {
+    margin: 5px;
+    margin-top: 90px;
+    padding: 10px;
+    border: var(--primary) 2px solid;
+    border-radius: 5px;
+    background-color: var(--dark-white);
+    z-index: -1
+}
+
+.edit-btn {
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+    color: var(--second);
+}
+
+@media only screen and (min-width: 700px) {
+    #poems {
+        margin: auto;
+        margin-top: 90px;
+        border: none;
+        background: none;
+    }
+    .poem {
+        background: var(--white);
+        box-shadow: 3px 3px 4px #62D8A766;
+    }
+}
+
+.poem {
+    margin: 15px auto;
+    padding: 5px;
+    border: var(--primary) solid 1px;
+    border-radius: 5px;
+    flex-wrap: wrap;
+    word-wrap: normal;
+    width: 100%;
+    background-color: var(--white);
+}
+.poem .body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.poem .body .title {
+    color: var(--dark);
+    text-align: center;
+    font-weight: 600;
+    width: 100%;
+}
+.poem .body .text {
+    width: 100%;
+    text-align: center;
+    overflow: auto;
+    resize: none;
+    border: none;
+    color: var(--dark);
+    margin-top: 5px;
+    background-color: #00000000;
+}
+.poem .info {
+    width: 100%;
+    color: var(--erased);
+    border-bottom: var(--second) solid 1px;
+    padding: 5px;
+    margin-bottom: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.poem .info .author {
+    grid-col: 1/2;
+    text-align: center;
+}
+.poem .info .lastupdate {
+    grid-col: 2/3;
+    text-align: center;
+}
+.poem .info .edit-btn {
+    grid-col: 3/4;
+    text-align: center;
+}
