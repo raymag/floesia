@@ -38,16 +38,18 @@ nav#navbar {
     padding: 10px;
     border: var(--primary) 2px solid;
     border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
     background-color: var(--dark-white);
+}
+
+.edit-btn {
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+    color: gray;
 }
 
 @media only screen and (min-width: 700px) {
     #poems {
-        width: 60vw;
         margin: auto;
         margin-top: 90px;
         border: none;
