@@ -97,11 +97,22 @@ nav#navbar {
 }
 .poem .info {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     color: var(--erased);
     border-bottom: var(--second) solid 1px;
     padding: 5px;
     margin-bottom: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.poem .info .author {
+    grid-col: 1/2;
+    text-align: center;
+}
+.poem .info .lastupdate {
+    grid-col: 2/3;
+    text-align: center;
+}
+.poem .info .edit-btn {
+    grid-col: 3/4;
+    text-align: center;
 }
