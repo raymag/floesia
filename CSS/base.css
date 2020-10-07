@@ -47,7 +47,7 @@ nav#navbar {
     cursor: pointer;
     font-size: 14px;
     text-align: center;
-    color: gray;
+    color: var(--second);
 }
 
 @media only screen and (min-width: 700px) {
@@ -101,6 +101,7 @@ nav#navbar {
     align-items: center;
     justify-content: space-between;
     color: var(--erased);
-    border-top: var(--erased) solid 1px;
+    border-bottom: var(--second) solid 1px;
     padding: 5px;
+    margin-bottom: 15px;
 }

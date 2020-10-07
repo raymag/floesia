@@ -204,17 +204,18 @@ function showPoems(component_id,poems){
     poems.forEach((p,i)=>{
         result += `
         <article class="poem col-12 col-sm-6 col-md-4">
+            <div class="info">
+                <span class="author">${p.author}</span>
+                <span class="lastupdate">${p.lastupdate.toDateString()}</span>
+                <div class="edit-btn" id="edit-btn-${i}" onclick="editPoem(${i})">Editar</div>
+            </div>
+            
             <div class="body">
                 <span class="title">${p.title}</span>
                 <textarea id="poem_${i}" spellcheck="false" class="text poem-textarea" disabled>
                     ${p.content}
                 </textarea>
             </div>
-            <div class="info">
-                <span class="author">${p.author}</span>
-                <span class="lastupdate">${p.lastupdate.toDateString()}</span>
-            </div>
-            <div class="edit-btn" id="edit-btn-${i}" onclick="editPoem(${i})">Editar</div>
         </article>
         `;
     });
