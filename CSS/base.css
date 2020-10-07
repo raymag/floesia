@@ -26,6 +26,7 @@ nav#navbar {
     top: 0;
     left: 0;
     width: 100%;
+    z-index: 1
 }
 #navbar-brand h1{
     padding: 0;
@@ -39,6 +40,7 @@ nav#navbar {
     border: var(--primary) 2px solid;
     border-radius: 5px;
     background-color: var(--dark-white);
+    z-index: -1
 }
 
 .edit-btn {
