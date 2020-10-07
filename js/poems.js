@@ -203,7 +203,7 @@ function showPoems(component_id,poems){
     let result = "";
     poems.forEach((p,i)=>{
         result += `
-        <article class="poem col-12 col-sm-6 col-md-4">
+        <article class="poem">
             <div class="info">
                 <span class="author">${p.author}</span>
                 <span class="lastupdate">${p.lastupdate.toDateString()}</span>
