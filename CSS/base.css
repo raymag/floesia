@@ -141,3 +141,7 @@ nav#navbar {
     margin: auto auto;
     text-align: center;
 }
+
+#poem-content {
+    margin-top: 2%;
+}
