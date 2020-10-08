@@ -116,3 +116,10 @@ nav#navbar {
     grid-col: 3/4;
     text-align: center;
 }
+
+.red-alert {
+    width: 100%;
+    background: rgb(255, 143, 143);
+    padding: 2px 8px;
+    border-radius: 5px;
+}
