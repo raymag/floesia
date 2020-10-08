@@ -10,6 +10,14 @@ window.onload = () => {
     })
 }
 
+document.addEventListener('DOMContentLoaded', (event) => {
+    if(localStorage.getItem("tk")) {
+        document.getElementById("logout").style.display="block"
+    } else {
+        document.getElementById("logout").style.display="none"
+    }
+})
+
 function isAuthenticated() {
     if (localStorage.getItem('tk') ) {
         location.href = "/";

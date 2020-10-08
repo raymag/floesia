@@ -14,6 +14,7 @@ body {
 }
 
 nav#navbar {
+    position: relative;
     background-color: var(--primary);
     background: linear-gradient(45deg, var(--primary), var(--second));
     color: var(--white);
@@ -31,6 +32,25 @@ nav#navbar {
 #navbar-brand h1{
     padding: 0;
     margin: 0;
+}
+
+#navbar-links {
+    position: absolute;
+    right: 2em;
+    margin: auto;
+    list-style-type: none;
+}
+
+.navbar-links-item {
+    background-color: #fc0349;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.navbar-links-item a, .navbar-links-item a:visited, .navbar-links-item a:hover {
+    color: #ffffff;
+    text-decoration: none;
 }
 
 #poems {
