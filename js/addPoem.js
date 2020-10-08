@@ -15,3 +15,7 @@ function disableUI() {
     poemTitleInput.setAttribute("disabled", "disabled");
     poemTextArea.setAttribute("disabled", "disabled");
 }
+
+function presentDialog() {
+    $('#myModal').modal('show');
+}
