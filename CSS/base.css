@@ -19,6 +19,7 @@ body {
 }
 
 nav#navbar {
+    position: relative;
     background-color: var(--primary);
     background: linear-gradient(45deg, var(--primary), var(--second));
     color: var(--white);
@@ -52,6 +53,24 @@ nav#navbar {
     border: none;
 }
 
+#navbar-links {
+    position: absolute;
+    right: 2em;
+    margin: auto;
+    list-style-type: none;
+}
+
+.navbar-links-item {
+    background-color: #fc0349;
+    padding: 0.5em 1em;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.navbar-links-item a, .navbar-links-item a:visited, .navbar-links-item a:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
 
 #poems {
     margin: 5px;
@@ -135,4 +154,11 @@ nav#navbar {
 .poem .info .edit-btn {
     grid-col: 3/4;
     text-align: center;
+}
+
+.red-alert {
+    width: 100%;
+    background: rgb(255, 143, 143);
+    padding: 2px 8px;
+    border-radius: 5px;
 }
