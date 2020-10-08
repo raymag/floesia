@@ -8,7 +8,7 @@
 
 Take note that Floesia is still in development. Many features are still being developed and many bugs are bound to exist.
 
-*Floesia also uses an [API](https://github.com/raymag/floesia-api), which you can contribute to as well.
+*Floesia also uses an [API](https://github.com/raymag/floesia-api), which you can contribute to as well.*
 
 ## Contributing
 If you want to contribute to this project, take a look at the issues section, make a fork of this repository, be respectful with others and go on. All help is welcome. 
