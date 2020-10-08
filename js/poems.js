@@ -1,7 +1,7 @@
 var poems = [];
 
 window.onload = function () {
-    fetch("https://floesia-api.herokuapp.com/poems")
+    fetch("https://floesia-api.herokuapp.com/poems?number=5")
     .then(res => res.text())
     .then(json => {
         poems = JSON.parse(json);
