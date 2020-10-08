@@ -127,6 +127,7 @@ nav#navbar {
 #user-input {
     width: 100%;
     height: 100%;
+    margin-top: 10%;
 }
 
 #poem-title, #poem-content {
