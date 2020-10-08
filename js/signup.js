@@ -21,8 +21,7 @@ function signup() {
                 data
                     .json()
                     .then(data => {
-                        storeToken(data.token);
-                        location.href = '/';
+                        location.href = '/login';
                     })
             }
         } )
