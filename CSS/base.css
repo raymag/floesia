@@ -19,23 +19,30 @@ body {
 }
 
 nav#navbar {
-    position: relative;
-    background-color: var(--primary);
+    position: fixed;
+    
+    top: 0;
+    left: 0;
+    
     background: linear-gradient(45deg, var(--primary), var(--second));
+    background-color: var(--primary);
     color: var(--white);
+    
     font-weight: bold;
     font-family: 'Roboto', monospace, Verdana, Tahoma, sans-serif;
+    
     padding: 12px 20px;
+    
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
+    
     width: 100%;
+    
     z-index: 1
 }
-#navbar-brand h1{
+
+#navbar-brand h1 {
     padding: 0;
     margin: 0;
 }
@@ -54,22 +61,16 @@ nav#navbar {
 }
 
 #navbar-links {
-    position: absolute;
-    right: 2em;
-    margin: auto;
+    display: flex;
+    align-items: center;
+
+    margin: 0;
+
     list-style-type: none;
 }
 
-.navbar-links-item {
-    background-color: #fc0349;
-    padding: 0.5em 1em;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.navbar-links-item a, .navbar-links-item a:visited, .navbar-links-item a:hover {
-    color: #ffffff;
-    text-decoration: none;
+#navbar-links li {
+    margin-left: 16px;
 }
 
 #poems {
