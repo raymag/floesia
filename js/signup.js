@@ -17,12 +17,16 @@ function signup() {
 
             if (data.status === 404) {
                 redAlert('Incorrect nickname, email or password.')
-            } else {
+            }
+            if (data.status === 201) {
                 data
                     .json()
                     .then(data => {
-                        location.href = '/login';
+                        location.href = '/login.html';
                     })
+            }
+            else {
+                redAlert('E-mail or username is already in use.');
             }
         } )
         .catch((err) => {

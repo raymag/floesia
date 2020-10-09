@@ -11,11 +11,13 @@ window.onload = () => {
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
-    if(localStorage.getItem("tk")) {
-        document.getElementById("logout").style.display="block"
-    } else {
-        document.getElementById("logout").style.display="none"
-    }
+    try {
+        if(localStorage.getItem("tk")) {
+            document.getElementById("logout").style.display="block";
+        } else {
+            document.getElementById("logout").style.display="none";
+        }
+    } catch {}
 })
 
 function isAuthenticated() {
