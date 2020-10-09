@@ -13,29 +13,69 @@ body {
     background-color: var(--dark-white);
 }
 
+.dark{
+    background-color: black !important;
+    color: white !important;
+}
+
 nav#navbar {
-    background-color: var(--primary);
-    background: linear-gradient(45deg, var(--primary), var(--second));
-    color: var(--white);
-    font-weight: bold;
-    font-family: 'Roboto', monospace, Verdana, Tahoma, sans-serif;
-    padding: 12px 20px;
-    display: flex;
-    align-items: center;
     position: fixed;
+    
     top: 0;
     left: 0;
+    
+    background: linear-gradient(45deg, var(--primary), var(--second));
+    background-color: var(--primary);
+    color: var(--white);
+    
+    font-weight: bold;
+    font-family: 'Roboto', monospace, Verdana, Tahoma, sans-serif;
+    
+    padding: 12px 20px;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
     width: 100%;
+    
     z-index: 1
 }
-#navbar-brand h1{
+
+#navbar-brand h1 {
     padding: 0;
     margin: 0;
 }
 
+.theme-toggle-button{
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: #62D8C2 ;
+    padding: 0;
+    margin: 0;
+}
+.theme-toggle-button:focus{
+    outline: none;
+    border: none;
+}
+
+#navbar-links {
+    display: flex;
+    align-items: center;
+
+    margin: 0;
+
+    list-style-type: none;
+}
+
+#navbar-links li {
+    margin-left: 16px;
+}
+
 #poems {
     margin: 5px;
-    margin-top: 90px;
+    margin-top: 72px;
     padding: 10px;
     border: var(--primary) 2px solid;
     border-radius: 5px;
@@ -53,7 +93,7 @@ nav#navbar {
 @media only screen and (min-width: 700px) {
     #poems {
         margin: auto;
-        margin-top: 90px;
+        margin-top: 72px;
         border: none;
         background: none;
     }
@@ -115,4 +155,11 @@ nav#navbar {
 .poem .info .edit-btn {
     grid-col: 3/4;
     text-align: center;
+}
+
+.red-alert {
+    width: 100%;
+    background: rgb(255, 143, 143);
+    padding: 2px 8px;
+    border-radius: 5px;
 }

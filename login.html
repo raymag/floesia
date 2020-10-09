@@ -20,46 +20,52 @@
             <h1>Floesia</h1>
         </div>
         <ul id="navbar-links">
-            <!-- <li><a href=""></a></li> -->
         </ul>
     </nav>
 
+    <br/><br/>
+    
     <div class="container login-form" id="poems">
         <div class="form">
-
-
             <div class="form-content">
                 <div class="row ">
                     <div class="col">
                         <div class="note">
-                            <p id="noteHeader">Login</p>
-                           
+                            <p id="noteHeader">Log-in</p>
+                            <div id="alert-box"></div>
                         </div>
                     </div>
                 </div>
                 <div class="row row1">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Nickname" value="" />
+                            <input type="email" class="form-control" placeholder="Email" id="email" />
                         </div>
                     </div>
                 </div>
-                <div class="row row2">
+                <div class="row row1">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Password" value="" />
+                            <input type="password" class="form-control" placeholder="Password" id="password" />
                         </div>
                     </div>
                 </div>
+
+                <div class="row row1">
+                    <div class="col-md-6">
+                        <small class="text-muted">Doesn't have an account? <a href="/signup.html">Sign-up!</a></small>
+                    </div>
+                </div>
+
                 <div class="submitButtonContainer">
-                    <button type="button" class="btnSubmit">Submit</button>
+                    <button type="button" class="btnSubmit" id="loginBtn">Log-in</button>
                 </div>
 
             </div>
         </div>
     </div>
 
-
+<script src="./js/login.js"></script>
 </body>
 
 </html>

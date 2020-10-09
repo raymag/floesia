@@ -23,40 +23,45 @@
             <!-- <li><a href=""></a></li> -->
         </ul>
     </nav>
+    <br/><br/>
     <div class="container register-form" id="poems">
         <div class="form">
-
-
             <div class="form-content">
                 <div class="row">
                     <div class="col">
                         <div class="note">
                             <p id="noteHeader">Register for Floesias</p>
-                            <p id="noteSubHeader">No account yet? Click <a href="">here</a>.</p>
+                            <div id="alert-box" align="center" class="row"></div>
                         </div>
                     </div>
                 </div>
+
+
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Nickname" value="" />
+                            <input type="text" class="form-control" placeholder="Username" id="nickname" value="" />
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Password" value="" />
+                            <input type="password" class="form-control" placeholder="Password" id="password" value="" />
                         </div>
                     </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="E-mail" id="email" value="" />
+                        </div>
+                    </div> 
                 </div>
-                <div class="submitButtonContainer">
-                    <button type="button" class="btnSubmit">Register</button>
+                <div class="submitButtonContainer text-center ">
+                    <button type="button" class="btnSubmit" id="signupBtn">Register</button>
                 </div>
-
             </div>
         </div>
     </div>
 
-
+    <script src="./js/signup.js"></script>
 </body>
 
 </html>
