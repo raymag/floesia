@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="./CSS/base.css">
-
+        <link rel="stylesheet" href="./CSS/addPoem.css">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="./CSS/css_bootstrap/bootstrap.min.css">
         <link rel="shortcut icon" href="images/fiv.png"/>
@@ -30,13 +30,21 @@
                       <!-- Modal content-->
                       <div class="modal-content">
                         <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          <button type="button" class="close" data-dismiss="modal" id="closeModalBtn">&times;</button>
                           <h4 class="modal-title">Signup/Login Required</h4>
                         </div>
                         <div class="modal-body">
-                          <p>To be able to write a poem, you need to be logged in or you need to signup.</p>
-                          <button type="button" id="loginBtn" class="btn btn-success">Login</button>
-                          <button type="button" id="signupBtn" class="btn btn-success">Signup</button>
+                          <div class="row">
+                            <div class="col">
+                              <p>To be able to write a poem, you need to be logged in or you need to signup.</p>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <button type="button" id="loginBtn" class="btn btn-success">Login</button>
+                              <button type="button" id="signupBtn" class="btn btn-success">Signup</button>
+                            </div>
+                          </div>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
