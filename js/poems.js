@@ -38,9 +38,7 @@ function showPoems(component_id, poems) {
             
             <div class="body">
                 <span class="title">${p.title}</span>
-                <textarea id="poem_${i}" spellcheck="false" class="text poem-textarea" disabled>
-                    ${p.body}
-                </textarea>
+                <textarea id="poem_${i}" spellcheck="false" class="text poem-textarea" disabled>${p.body}</textarea>
             </div>
         </article>
         `;
