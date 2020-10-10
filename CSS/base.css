@@ -7,6 +7,9 @@
     --erased: #37504b73;
     --white: #FEFEFE;
     --dark-white: #FDFDFD;
+
+    --weak-primary: #62D8C266;
+    --weak-second: #62D8A766;
 }
 
 body {
@@ -145,15 +148,15 @@ nav#navbar {
     grid-template-columns: 1fr 1fr 1fr;
 }
 .poem .info .author {
-    grid-col: 1/2;
+    grid-column: 1/2;
     text-align: center;
 }
 .poem .info .lastupdate {
-    grid-col: 2/3;
+    grid-column: 2/3;
     text-align: center;
 }
 .poem .info .edit-btn {
-    grid-col: 3/4;
+    grid-column: 3/4;
     text-align: center;
 }
 
@@ -162,4 +165,50 @@ nav#navbar {
     background: rgb(255, 143, 143);
     padding: 2px 8px;
     border-radius: 5px;
+}
+
+.container {
+    color: var(--dark);
+}
+
+.input, .textarea {
+    width: 100%;
+    border-radius: 5px;
+    border: 3px solid #00000005;
+    border-bottom: 3px solid var(--primary);
+    padding: .25em .5em;
+    outline: none;
+    color: var(--dark);
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: .5em;
+}
+.input:focus, .textarea:focus {
+    border-bottom: 3px solid var(--dark);
+}
+
+textarea {
+    max-width: 100%;
+}
+
+.label {
+    font-size: 1.6em;
+    color: var(--dark);
+    font-weight: bold;
+}
+
+.form {
+    width: 95%;
+    margin: auto;
+}
+
+.primary-btn {
+    background: var(--primary);
+    background: linear-gradient(90deg, var(--primary), var(--second));
+    outline: none;
+    transition: none !important;
+}
+.primary-btn:hover {
+    background: var(--dark);
+    color: var(--white);
 }
