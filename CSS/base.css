@@ -233,6 +233,10 @@ textarea {
     border: 1px solid var(--erased);
 }
 
+main {
+    margin: 8em auto;
+}
+
 /* DARK MODE */
 body.darkmode {
     background: #050505;

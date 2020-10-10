@@ -7,8 +7,6 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="./CSS/css_bootstrap/bootstrap.min.css">
-
-    <link rel="stylesheet" href="./CSS/signup.css">
     <link rel="stylesheet" href="./CSS/base.css">
     <link rel="shortcut icon" href="images/fiv.png"/>
     <title>Floesia</title>
@@ -38,47 +36,41 @@
           </li>
         </ul>
       </nav>
-
+    
     <br/><br/>
-    <div class="container register-form" id="poems">
-        <div class="form">
-            <div class="form-content">
-                <div class="row">
-                    <div class="col">
-                        <div class="note">
-                            <p id="noteHeader">Register for Floesias</p>
-                            <div id="alert-box" align="center" class="row"></div>
-                        </div>
-                    </div>
-                </div>
+    <main>
 
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Username" id="nickname" value="" />
+        <div class="container">
+            <div class="box pb-5 pt-5">
+                <h3 class="text-center">Register for Floesias</h3><br/>
+                <div id="alert-box" align="center" class="row"></div><br/>                  
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="input" placeholder="Username" id="nickname" value="" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Password" id="password" value="" />
+                        <div class="col-md-6">
+                        <div class="form-groups">
+                            <input type="password" class="input" placeholder="Password" id="password" value="" />
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="E-mail" id="email" value="" />
+                            <input type="email" class="input" placeholder="E-mail" id="email" value="" />
                         </div>
                     </div> 
                 </div>
                 <div class="submitButtonContainer text-center ">
-                    <button type="button" class="btnSubmit" id="signupBtn">Register</button>
+                    <button type="button" class="btn btn-lg btn-block primary-btn" id="signupBtn">Register</button>
                 </div>
             </div>
         </div>
     </div>
-
-    <script src="./js/signup.js"></script>
-    <script src="./js/darkmode.js"></script>
+</main>
+    
+<script src="./js/signup.js"></script>
+<script src="./js/darkmode.js"></script>
 </body>
-
 </html>
