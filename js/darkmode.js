@@ -7,7 +7,6 @@ darkmodeToggler.forEach(el => el.addEventListener('click', () => {
 }));
 function applyDefaultTheme(){
     const darkmode = localStorage.getItem("dk");
-    console.log(darkmode);
     if (darkmode) {
         applyDarkMode();
     } else {
