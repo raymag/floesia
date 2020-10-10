@@ -212,3 +212,26 @@ textarea {
     background: var(--dark);
     color: var(--white);
 }
+
+/* DARK MODE */
+body.darkmode {
+    background: #050505;
+    color: var(--primary);
+}
+body.darkmode .label {
+    color: var(--primary);
+}
+
+.container {
+    color: var(--primary);
+}
+
+body.darkmode .input, body.darkmode .textarea {
+    border: 3px solid #FFFFFF66;
+    border-bottom: 3px solid var(--primary);
+    background: #060606;
+    color: var(--primary);
+}
+body.darkmode .input:focus, body.darkmode .textarea:focus {
+    border-bottom: 3px solid var(--white);
+}
