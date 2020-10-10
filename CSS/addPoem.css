@@ -32,3 +32,8 @@
 .modal-body {
     text-align: center;
 }
+
+.submitButtonContainer{
+    text-align: center;
+    margin-top: 6%;
+}
