@@ -142,6 +142,16 @@ nav#navbar {
     margin-top: 5px;
     background-color: #00000000;
 }
+
+@media screen and (max-width:700px) {
+    .poem .body {
+        font-size: 1.6em;
+    }
+    #poems {
+        border: none;
+    }
+}
+
 .poem .info {
     width: 100%;
     color: var(--erased);
@@ -252,4 +262,7 @@ body.darkmode .poem .body .text {
 }
 body.darkmode .poem .info {
     color: var(--weak-second);
+}
+body.darkmode #poems {
+    background: none;
 }
