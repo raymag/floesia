@@ -227,6 +227,12 @@ textarea {
     color: var(--white);
 }
 
+.box {
+    padding: 1em 2em;
+    background: var(--white);
+    border: 1px solid var(--erased);
+}
+
 /* DARK MODE */
 body.darkmode {
     background: #050505;
@@ -265,4 +271,10 @@ body.darkmode .poem .info {
 }
 body.darkmode #poems {
     background: none;
+}
+
+body.darkmode .box {
+    background: #060606;
+    color: var(--primary);
+    border: solid 1px var(--second);
 }
