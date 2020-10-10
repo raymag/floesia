@@ -107,7 +107,7 @@ nav#navbar {
 }
 
 .poem {
-    margin: 15px auto;
+    margin: 3em auto;
     padding: 5px;
     border: var(--primary) solid 1px;
     border-radius: 5px;
@@ -121,12 +121,16 @@ nav#navbar {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin: 2em auto;
+    font-size: 2em;
 }
 .poem .body .title {
     color: var(--dark);
     text-align: center;
     font-weight: 600;
     width: 100%;
+    font-size: 1em;
+    margin-bottom: 1em;
 }
 .poem .body .text {
     width: 100%;
@@ -138,6 +142,16 @@ nav#navbar {
     margin-top: 5px;
     background-color: #00000000;
 }
+
+@media screen and (max-width:700px) {
+    .poem .body {
+        font-size: 1.6em;
+    }
+    #poems {
+        border: none;
+    }
+}
+
 .poem .info {
     width: 100%;
     color: var(--erased);
@@ -213,6 +227,16 @@ textarea {
     color: var(--white);
 }
 
+.box {
+    padding: 1em 2em;
+    background: var(--white);
+    border: 1px solid var(--erased);
+}
+
+main {
+    margin: 8em auto;
+}
+
 /* DARK MODE */
 body.darkmode {
     background: #050505;
@@ -234,4 +258,27 @@ body.darkmode .input, body.darkmode .textarea {
 }
 body.darkmode .input:focus, body.darkmode .textarea:focus {
     border-bottom: 3px solid var(--white);
+}
+
+body.darkmode .poem {
+    border: var(--primary) solid 1px;
+    background-color: #090909;
+}
+body.darkmode .poem .body .title {
+    color: var(--second);
+}
+body.darkmode .poem .body .text {
+    color: var(--primary);
+}
+body.darkmode .poem .info {
+    color: var(--weak-second);
+}
+body.darkmode #poems {
+    background: none;
+}
+
+body.darkmode .box {
+    background: #060606;
+    color: var(--primary);
+    border: solid 1px var(--second);
 }
