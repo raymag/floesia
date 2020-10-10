@@ -27,7 +27,6 @@ window.onload = () => {
     
     function toggleMode(){
         const darkmode = localStorage.getItem("dk");
-        console.log(darkmode);
         if (darkmode) {
             localStorage.removeItem("dk");
             applyLightMode();
