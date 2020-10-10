@@ -71,7 +71,7 @@ function addListenerToSubmitButton() {
 function getPostDataForPoemAddition(poemTitle, poemBody) {
     return {
         method: 'POST',
-        body: JSON.stringify({"title": poemTitle, "body": poemBody}),
+        body: JSON.stringify({title: poemTitle, body: poemBody}, null, 2),
         headers: getHeaders(),
         mode: 'cors'        
     };
