@@ -1,14 +1,49 @@
-var poems = [];
+var page = 1;
+var lastPage = 0;
 
 window.onload = function () {
-    fetch("https://floesia-api.herokuapp.com/poems?number=5")
-    .then(res => res.text())
-    .then(json => {
-        poems = JSON.parse(json);
-        showPoems("poems_show",poems.poems);
-    })
-
+    fetchPoems()
+        .then(poems => {
+            showPoems("poems_show", poems);
+            addScrollListener();
+        })
 };
+
+function fetchPoems() {
+    return new Promise((resolve, reject) => {
+        lastPage = page;
+        fetch(`https://floesia-api.herokuapp.com/poems?page=${page}`)
+            .then(res => res.text())
+            .then(json => {
+                poems = JSON.parse(json);
+                if (poems.poems.length !== 0) {
+                    page++;
+                }
+                resolve(poems.poems);
+            })
+            .catch(err => {
+                reject([]);
+            })
+    });
+}
+
+function addScrollListener() {
+    window.addEventListener("scroll", () => {
+        const scrollTop = document.documentElement.scrollTop;
+        const clientHeight = document.documentElement.clientHeight;
+        if (scrollTop >= clientHeight) {
+            if (page !== lastPage) {
+                loadMore();
+            }
+        }
+    })
+}
+
+function loadMore() {
+    fetchPoems(page)
+        .then(poems => showPoems("poems_show", poems));
+}
+
 
 function editPoem(i) {
     document.getElementById(`poem_${i}`).disabled = !document.getElementById(
@@ -19,8 +54,8 @@ function editPoem(i) {
     document.getElementById(
         `edit-btn-${i}`
     ).innerText = document.getElementById(`poem_${i}`).disabled
-        ? "Editar"
-        : "Concluido";
+            ? "Editar"
+            : "Concluido";
 }
 
 function showPoems(component_id, poems) {
@@ -31,8 +66,8 @@ function showPoems(component_id, poems) {
             <div class="info">
                 <span class="author">${p.author}</span>
                 <span class="lastupdate">${new Date(
-                    p.updatedAt
-                ).toDateString()}</span>
+            p.updatedAt
+        ).toDateString()}</span>
                 <div class="edit-btn" id="edit-btn-${i}" onclick="editPoem(${i})">Editar</div>
             </div>
             
@@ -43,6 +78,6 @@ function showPoems(component_id, poems) {
         </article>
         `;
     });
-    document.getElementById(component_id).innerHTML = result;
+    document.getElementById(component_id).innerHTML += result;
     autosize(document.querySelectorAll("textarea.poem-textarea"));
 }
