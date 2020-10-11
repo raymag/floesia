@@ -29,9 +29,12 @@ function fetchPoems() {
 
 function addScrollListener() {
     window.addEventListener("scroll", () => {
-        const scrollTop = document.documentElement.scrollTop;
-        const clientHeight = document.documentElement.clientHeight;
-        if (scrollTop >= clientHeight) {
+        const d = document.documentElement;
+
+        const scrollPosition = d.scrollTop + window.innerHeight;
+        const scrollTarget = d.offsetHeight - 1000;
+
+        if (scrollPosition >= scrollTarget) {
             if (page !== lastPage) {
                 loadMore();
             }
