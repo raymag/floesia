@@ -217,6 +217,10 @@ textarea {
     margin: auto;
 }
 
+.no-decoration, .no-decoration:hover {
+    text-decoration: none;
+}
+
 .primary-btn {
     background: var(--primary);
     background: linear-gradient(90deg, var(--primary), var(--second));
