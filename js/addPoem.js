@@ -44,12 +44,8 @@ function presentDialog() {
 }
 
 function addListenerToSubmitButton() {
-
-    var poemTitle = poemTitleInput.value;
-    var poemBody = poemTextArea.value;
-
     submitPoemBtn.onclick = function() {
-        fetch( `${base_api}/poems`, getPostDataForPoemAddition(poemTitle, poemBody) )
+        fetch( `${base_api}/poems`, getPostDataForPoemAddition(poemTitleInput.value, poemTextArea.value) )
             .then( data => {
                 if (data.status === 404) {
                     redAlert('Incorrect credentials')
