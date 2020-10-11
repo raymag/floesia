@@ -3,6 +3,7 @@
 * {
     --primary: #62D8C2;
     --second: #62D8A7;
+    --danger: #d34141;
     --dark: #37504B;
     --erased: #37504b73;
     --white: #FEFEFE;
@@ -224,6 +225,42 @@ textarea {
 }
 .primary-btn:hover {
     background: var(--dark);
+    color: var(--white);
+}
+
+.flat-dark-btn {
+    outline: none;
+    background: none;
+    transition: none !important;
+    color: var(--dark);
+    border: 2px solid var(--dark) !important;
+}
+.flat-dark-btn:hover {
+    background: var(--dark);
+    color: var(--white);
+}
+
+.flat-white-btn {
+    outline: none;
+    background: none;
+    transition: none !important;
+    color: var(--white);
+    border: 2px solid var(--white) !important;
+}
+.flat-white-btn:hover {
+    background: var(--white);
+    color: var(--dark);
+}
+
+.flat-danger-btn {
+    background: none;
+    outline: none;
+    transition: none !important;
+    color: var(--danger);
+    border: 2px solid var(--danger) !important;
+}
+.flat-danger-btn:hover {
+    background: var(--danger);
     color: var(--white);
 }
 
