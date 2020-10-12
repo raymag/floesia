@@ -113,7 +113,7 @@ function showPoems(component_id, poems) {
                 <span class="title"><a href="/poem.html?p=${p._id}" class="no-decoration text-second">${p.title}</a></span>
                 <textarea id="poem_${i}" spellcheck="false" class="text poem-textarea" disabled>${p.body}</textarea>              
             </div>
-            <span class="float-right"><i class="far fa-heart" style="color:red"></i> 25</span> 
+            <span class="float-right"><button id="like" class="btn" onclick=""><i class="far fa-heart" style="color:red"></i> 25</button></span> 
         </article>
         `;
     });
