@@ -70,10 +70,13 @@ function showPoems(component_id, poems) {
                 <span class="author">${p.author.username}</span>
                 <span class="lastupdate">${new Date(
             p.updatedAt
-        ).toDateString()}</span>
-                <div class="edit-btn" id="edit-btn-${i}" onclick="editPoem(${i})">Editar</div>
-            </div>
-            
+        ).toDateString()}</span>`;
+
+        if (getAuthorInfo("_id") === p.author._id) {
+            result += `<div class="edit-btn" id="edit-btn-${i}" onclick="editPoem(${i})">Editar</div>`;
+        } 
+                
+        result += `</div>
             <div class="body">
                 <span class="title">${p.title}</span>
                 <textarea id="poem_${i}" spellcheck="false" class="text poem-textarea" disabled>${p.body}</textarea>
@@ -83,4 +86,19 @@ function showPoems(component_id, poems) {
     });
     document.getElementById(component_id).innerHTML += result;
     autosize(document.querySelectorAll("textarea.poem-textarea"));
+}
+
+function getAuthorInfo(key) {
+    if (key === "username") {
+        return localStorage.getItem("aun");
+    }
+    if (key === "_id") {
+        return localStorage.getItem("aid");
+    }
+    if (key === "email") {
+        return localStorage.getItem("aem");
+    }
+    else {
+        return '';
+    }
 }

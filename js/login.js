@@ -37,6 +37,7 @@ function login() {
                     .json()
                     .then(data => {
                         storeToken(data.token);
+                        storeAuthor(data.author);
                         location.href = '/';
                     })
             }
@@ -76,6 +77,12 @@ function genPostData(credentials) {
 
 function storeToken(token) {
     localStorage.setItem('tk', token);
+}
+
+function storeAuthor(author) {
+    localStorage.setItem('aun', author.username);
+    localStorage.setItem('aid', author._id);
+    localStorage.setItem('aem', author.email);
 }
 
 function redAlert(message) {
