@@ -67,7 +67,7 @@ function showPoems(component_id, poems) {
         result += `
         <article class="poem">
             <div class="info">
-                <span class="author">${p.author}</span>
+                <span class="author">${p.author.username}</span>
                 <span class="lastupdate">${new Date(
             p.updatedAt
         ).toDateString()}</span>
