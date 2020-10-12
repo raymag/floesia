@@ -274,6 +274,13 @@ textarea {
     border: 1px solid var(--erased);
 }
 
+.text-second {
+    color: var(--second);
+}
+.text-second:hover {
+    color: var(--danger);
+}
+
 main {
     margin: 8em auto;
 }

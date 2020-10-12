@@ -1,13 +1,15 @@
-const base_api = "https://floesia-api.herokuapp.com";
+var base_api = "https://floesia-api.herokuapp.com";
 
 window.onload = () => {
     isAuthenticated();
 
     const loginBtn = document.querySelector("#loginBtn");
-    loginBtn.addEventListener("click", () => {
-        clearAlertBox();
-        login();
-    })
+    if (loginBtn) {
+        loginBtn.addEventListener("click", () => {
+            clearAlertBox();
+            login();
+        })
+    }
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
