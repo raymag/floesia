@@ -1,5 +1,14 @@
 const base_api = "https://floesia-api.herokuapp.com";
 
+if (isLogged()) {
+    location.href = "/";
+}
+
+function isLogged() {
+    return localStorage.getItem("tk");
+}
+
+
 window.onload = () => {
     const signupBtn = document.querySelector("#signupBtn");
     signupBtn.addEventListener("click", () => {
