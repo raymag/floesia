@@ -5,7 +5,14 @@ var base_api = "https://floesia-api.herokuapp.com";
 window.onload = function () {
     fetchPoems()
         .then(poems => {
-            showPoems("poems_show", poems);
+
+            if (isLogged()) {
+                fetchGivenHearts()
+                    .then(hearts => getPoemIdFromHearts(hearts))
+                    .then(poemIdFromHearts => showPoems("poems_show", poems, poemIdFromHearts));
+            } else {
+                showPoems("poems_show", poems);
+            }
             addScrollListener();
         })
 };
@@ -25,6 +32,30 @@ function fetchPoems() {
             .catch(err => {
                 reject([]);
             })
+    });
+}
+
+function fetchGivenHearts() {
+    return new Promise((resolve, reject) => {
+        fetch(`${base_api}/author/${getAuthorInfo("_id")}/hearts`)
+            .then(res => res.text())
+            .then(json => {
+                hearts = JSON.parse(json);
+                resolve(hearts);   
+            })
+            .catch(err => {
+                reject([]);
+            })
+    });
+}
+
+function getPoemIdFromHearts(hearts) {
+    return new Promise((resolve, reject) => {
+        const poemIdFromHearts = [];
+        hearts.forEach(heart => {
+            poemIdFromHearts.push(heart.poem);
+        });
+        resolve(poemIdFromHearts);
     });
 }
 
@@ -92,7 +123,7 @@ function genPostData(body) {
 }
 
 
-function showPoems(component_id, poems) {
+function showPoems(component_id, poems, poemIdFromHearts) {
     let result = "";
     poems.forEach((p, i) => {
         result += `
@@ -112,9 +143,18 @@ function showPoems(component_id, poems) {
                 <input type="hidden" id="poem_${i}_id" value="${p._id}" />
                 <span class="title"><a href="/poem.html?p=${p._id}" class="no-decoration text-second">${p.title}</a></span>
                 <textarea id="poem_${i}" spellcheck="false" class="text poem-textarea" disabled>${p.body}</textarea>              
-            </div>
-            <span class="float-right" title="heart" ><button id="like" class="btn bg-transparent" onclick=""><i class="far fa-heart fa-lg" style="color:red"></i> ${p.hearts}</button></span> 
-        </article>
+            </div>`;
+
+        if (poemIdFromHearts) {
+            if ( poemIdFromHearts.includes(p._id)) {
+                result += `<span class="float-right" title="heart" ><button id="like" class="btn bg-transparent" onclick=""><i class="fas fa-heart fa-lg" style="color:red"></i> ${p.hearts}</button></span>`;
+            } else {
+                result += `<span class="float-right" title="heart" ><button id="like" class="btn bg-transparent" onclick=""><i class="far fa-heart fa-lg" style="color:red"></i> ${p.hearts}</button></span>`;
+            }
+        } else {
+            result += `<span class="float-right" title="heart" ><a href="/login.html" id="like" class="btn bg-transparent"><i class="far fa-heart fa-lg" style="color:red"></i> ${p.hearts}</a></span>`;
+        }
+        result += `</article>
         `;
     });
     document.getElementById(component_id).innerHTML += result;
