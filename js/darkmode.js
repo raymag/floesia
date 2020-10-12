@@ -16,12 +16,10 @@ function applyDefaultTheme(){
 
 function applyDarkMode(){
     document.body.classList.add("darkmode");
-    $('#like').addClass('btn-dark');
 }
 
 function applyLightMode(){
     document.body.classList.remove("darkmode");
-    $('#like').removeClass('btn-dark');
 }
 
 function toggleMode(){
