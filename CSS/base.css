@@ -330,3 +330,7 @@ body.darkmode .box {
     color: var(--primary);
     border: solid 1px var(--second);
 }
+
+body.darkmode #like {
+    color: var(--white);
+}
