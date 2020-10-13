@@ -2,23 +2,17 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, shrink-to-fit=no" />
-  <link rel="stylesheet" href="./CSS/base.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="./CSS/base.css">
+  <link rel="stylesheet" href="./CSS/addPoem.css">
   <link rel="stylesheet" href="./CSS/css_bootstrap/bootstrap.min.css">
-  <script src="https://kit.fontawesome.com/4e6c6808e1.js" crossorigin="anonymous"></script>
   <link rel="shortcut icon" href="images/fiv.png" />
   <script src="./js/logout.js"></script>
-  <script src="./js/login.js"></script>
   <title>Floesia</title>
 </head>
 
 <body>
-
-  <div id="overlay">
-    <div class="spinner"></div>
-  </div>
-
   <nav id="navbar">
     <div id="navbar-brand">
       <h1><a href="/" class="text-white no-decoration">Floesia</a></h1>
@@ -33,14 +27,7 @@
           </svg>
         </button>
       </li>
-      <li>
-        <a id="login" class="btn flat-dark-btn" href="login.html">
-          <span class="d-block">
-            <i class="fas fa-sign-in-alt"></i>
-            Log in
-          </span>
-        </a>
-      </li>
+
       <li>
         <button id="logout" class="btn flat-dark-btn" onclick="logout()">
           <i class="fas fa-sign-out-alt"></i>
@@ -50,16 +37,56 @@
     </ul>
   </nav>
 
-  <main id="poems">
-
-    <div>
-      <button type="button" id="add-poem-btn" class="btn primary-btn">Add Poem</button>
-    </div>
-
+  <main id="user-input">
     <div class="container">
-      <div class="row" id="poems_show">
+
+      <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" id="closeModalBtn">&times;</button>
+              <h4 class="modal-title">Signup/Login Required</h4>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col">
+                  <p>To be able to write a poem, you need to be logged in or you need to signup.</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <button type="button" id="loginBtn" class="btn btn-success">Login</button>
+                  <button type="button" id="signupBtn" class="btn btn-success">Signup</button>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+        </div>
       </div>
+
+
+      <div class="form">
+        <div class="row" id="poem-title">
+          <label class="label">New Poem</label>
+          <input type="text" class="input" placeholder="Poem Title" id="poem-title-input">
+        </div>
+        <div class="row" id="poem-content">
+          <textarea class="textarea" rows="14" cols="50" placeholder="Write your poem"
+            id="poem-content-textarea"></textarea>
+        </div>
+        <div class="submitButtonContainer">
+          <button type="button" class="primary-btn btn btn-lg btn-block btnSubmit" id="sendPoemBtn">Send Poem</button>
+        </div>
+      </div>
+
     </div>
+
   </main>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -73,10 +100,9 @@
     crossorigin="anonymous"></script>
 
   <script src="js/autosize.min.js"></script>
-  <script src="js/poems.js"></script>
+  <script src="js/addPoem.js"></script>
   <script src="js/base.js"></script>
-  <script src="js/darkmode.js"></script>
-
+  <script src="./js/darkmode.js"></script>
 </body>
 
 </html>
