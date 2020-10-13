@@ -5,7 +5,7 @@ const darkmodeToggler = document.querySelectorAll(".darkmode-toggler");
 darkmodeToggler.forEach(el => el.addEventListener('click', () => {
     toggleMode();
 }));
-function applyDefaultTheme(){
+function applyDefaultTheme() {
     const darkmode = localStorage.getItem("dk");
     if (darkmode) {
         applyDarkMode();
@@ -14,15 +14,15 @@ function applyDefaultTheme(){
     }
 }
 
-function applyDarkMode(){
+function applyDarkMode() {
     document.body.classList.add("darkmode");
 }
 
-function applyLightMode(){
+function applyLightMode() {
     document.body.classList.remove("darkmode");
 }
 
-function toggleMode(){
+function toggleMode() {
     const darkmode = localStorage.getItem("dk");
     if (darkmode) {
         localStorage.removeItem("dk");

@@ -23,7 +23,7 @@ function fetchPoems() {
         fetch(`${base_api}/poems?page=${page}`)
             .then(res => res.text())
             .then(json => {
-                poems = JSON.parse(json);   
+                poems = JSON.parse(json);
                 if (poems.poems.length !== 0) {
                     page++;
                 }
@@ -41,7 +41,7 @@ function fetchGivenHearts() {
             .then(res => res.text())
             .then(json => {
                 hearts = JSON.parse(json);
-                resolve(hearts);   
+                resolve(hearts);
             })
             .catch(err => {
                 reject([]);
@@ -101,8 +101,8 @@ function editPoem(i) {
 }
 
 function updatePoem(body, id) {
-    fetch( `${base_api}/poems/${id}`, genPostData({body:body}, "PUT") )
-        .then( console.log('Poem edited') );
+    fetch(`${base_api}/poems/${id}`, genPostData({ body: body }, "PUT"))
+        .then(console.log('Poem edited'));
 }
 
 function genHeaders() {
@@ -122,7 +122,7 @@ function genPostData(body, method) {
     return postData;
 }
 
-function updatePoemHeartContainer(i, content){
+function updatePoemHeartContainer(i, content) {
     const heartContainer = document.querySelector(`#heart-container-${i}`);
     if (heartContainer) {
         heartContainer.innerHTML = content;
@@ -130,20 +130,20 @@ function updatePoemHeartContainer(i, content){
 }
 
 function giveHeart(i, poemId, hearts) {
-    fetch( `${base_api}/hearts/${poemId}`, genPostData({}, "POST") )
+    fetch(`${base_api}/hearts/${poemId}`, genPostData({}, "POST"))
         .then(res => res.text())
         .then(json => {
-            heart = JSON.parse(json);   
-            updatePoemHeartContainer(i, takeBackHeartUI(i, poemId, hearts+1));
+            heart = JSON.parse(json);
+            updatePoemHeartContainer(i, takeBackHeartUI(i, poemId, hearts + 1));
         });
 }
 
 function takeBackHeart(i, poemId, hearts) {
-    fetch( `${base_api}/poems/${poemId}/hearts`, genPostData({}, "DELETE") )
+    fetch(`${base_api}/poems/${poemId}/hearts`, genPostData({}, "DELETE"))
         .then(res => res.text())
         .then(json => {
-            heart = JSON.parse(json);   
-            updatePoemHeartContainer(i, giveHeartUI(i, poemId, hearts-1));
+            heart = JSON.parse(json);
+            updatePoemHeartContainer(i, giveHeartUI(i, poemId, hearts - 1));
         });
 }
 
@@ -160,8 +160,8 @@ function showPoems(component_id, poems, poemIdFromHearts) {
 
         if (getAuthorInfo("_id") === p.author._id) {
             result += `<div class="edit-btn" title="Edit poem" id="edit-btn-${i}" onclick="editPoem(${i})">Edit</div>`;
-        } 
-                
+        }
+
         result += `</div>
             <div class="body">
                 <span class="title" title="Take a better look"><a href="/poem.html?p=${p._id}" class="no-decoration text-second">${p.title}</a></span>
@@ -170,7 +170,7 @@ function showPoems(component_id, poems, poemIdFromHearts) {
             </div><div id="heart-container-${i}">`;
 
         if (poemIdFromHearts) {
-            if ( poemIdFromHearts.includes(p._id)) {
+            if (poemIdFromHearts.includes(p._id)) {
                 result += takeBackHeartUI(i, p._id, p.hearts);
             } else {
                 result += giveHeartUI(i, p._id, p.hearts);
@@ -185,11 +185,11 @@ function showPoems(component_id, poems, poemIdFromHearts) {
     autosize(document.querySelectorAll("textarea.poem-textarea"));
 }
 
-function takeBackHeartUI(i, id, hearts){
+function takeBackHeartUI(i, id, hearts) {
     return `<span class="float-right" title="Take back heart" id="take-back-heart-btn" onClick="takeBackHeart(${i}, '${id}', ${hearts})"><button id="like" class="btn bg-transparent" onclick=""><i class="fas fa-heart fa-lg" style="color:red"></i> ${hearts}</button></span>`;
 }
 
-function giveHeartUI(i, id, hearts){
+function giveHeartUI(i, id, hearts) {
     return `<span class="float-right" title="Give heart" id="give-heart-btn" onClick="giveHeart(${i}, '${id}', ${hearts})"><button id="like" class="btn bg-transparent" onclick=""><i class="far fa-heart fa-lg" style="color:red"></i> ${hearts}</button></span>`;
 }
 
