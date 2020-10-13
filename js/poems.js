@@ -189,7 +189,10 @@ function showPoems(component_id, poems, poemIdFromHearts) {
         result += `</div></article>
         `;
     });
-    document.querySelector("#overlay").remove();
+    const overlay = document.querySelector("#overlay");
+    if (overlay) {
+        overlay.remove();
+    }
     document.getElementById(component_id).innerHTML += result;
     autosize(document.querySelectorAll("textarea.poem-textarea"));
 }
