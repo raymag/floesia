@@ -1,0 +1,33 @@
+body{
+    background-color: grey;
+    margin: 0px;
+}
+#info
+{
+    height: 90vh; 
+    width: 90vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
+}
+#box{
+    width: 800px;
+    height: 750px;
+    background-color: white;
+    margin-top: 100px;
+}
+#corpo{
+    margin: 10px;
+}
+#titulo{
+    margin: 10px;
+    text-align: center;
+}
+#logo{
+    width: 100%;
+    height: 75px;
+    background-color: aquamarine;
+    position: fixed;
+}
