@@ -76,7 +76,15 @@ function addScrollListener() {
 
 function loadMore() {
     fetchPoems(page)
-        .then(poems => showPoems("poems_show", poems));
+        .then(poems => {
+            if (isLogged()) {
+                fetchGivenHearts()
+                    .then(hearts => getPoemIdFromHearts(hearts))
+                    .then(poemIdFromHearts => showPoems("poems_show", poems, poemIdFromHearts));
+            } else {
+                showPoems("poems_show", poems)
+            }
+        });
 }
 
 
