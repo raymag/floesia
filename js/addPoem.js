@@ -13,7 +13,7 @@ window.onload = () => {
     } else {
         addListenerToSubmitButton();
     }
-    
+
 }
 
 function isUserLoggedIn() {
@@ -24,11 +24,11 @@ function attachListenersToButtons() {
     var loginBtn = document.querySelector("#loginBtn");
     var signupBtn = document.querySelector("#signupBtn");
 
-    loginBtn.onclick = function() {
+    loginBtn.onclick = function () {
         location.href = 'login.html';
     }
 
-    signupBtn.onclick = function() {
+    signupBtn.onclick = function () {
         location.href = 'signup.html';
     }
 }
@@ -44,9 +44,9 @@ function presentDialog() {
 }
 
 function addListenerToSubmitButton() {
-    submitPoemBtn.onclick = function() {
-        fetch( `${base_api}/poems`, getPostDataForPoemAddition(poemTitleInput.value, poemTextArea.value) )
-            .then( data => {
+    submitPoemBtn.onclick = function () {
+        fetch(`${base_api}/poems`, getPostDataForPoemAddition(poemTitleInput.value, poemTextArea.value))
+            .then(data => {
                 if (data.status === 404) {
                     redAlert('Incorrect credentials')
                 } else {
@@ -56,20 +56,20 @@ function addListenerToSubmitButton() {
                             location.href = '/';
                         })
                 }
-            } )
+            })
             .catch((err) => {
                 console.log(err);
                 redAlert("Saving Poem failed.");
             })
-        }
+    }
 }
 
 function getPostDataForPoemAddition(poemTitle, poemBody) {
     return {
         method: 'POST',
-        body: JSON.stringify({title: poemTitle, body: poemBody}, null, 2),
+        body: JSON.stringify({ title: poemTitle, body: poemBody }, null, 2),
         headers: getHeaders(),
-        mode: 'cors'        
+        mode: 'cors'
     };
 }
 

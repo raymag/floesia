@@ -19,8 +19,8 @@ window.onload = () => {
 
 function signup() {
     const data = getFormData();
-    fetch( `${base_api}/signup`, genPostData(data) )
-        .then( data => {
+    fetch(`${base_api}/signup`, genPostData(data))
+        .then(data => {
 
             console.log(data.status);
 
@@ -37,7 +37,7 @@ function signup() {
             else {
                 redAlert('E-mail or username is already in use.');
             }
-        } )
+        })
         .catch((err) => {
             console.log(err);
             redAlert("Signup failed.")
