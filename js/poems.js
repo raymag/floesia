@@ -63,7 +63,7 @@ function addScrollListener() {
     window.addEventListener("scroll", () => {
         const d = document.documentElement;
 
-        const scrollPosition = d.scrollTop + window.innerHeight;
+        const scrollPosition = Math.max(d.scrollTop, window.pageYOffset) + window.innerHeight;
         const scrollTarget = d.offsetHeight - 1000;
 
         if (scrollPosition >= scrollTarget) {
