@@ -139,8 +139,12 @@ function giveHeart(i, poemId, hearts) {
 }
 
 function takeBackHeart(i, poemId, hearts) {
-    console.log('give hate')
-    console.log(poemId)
+    fetch( `${base_api}/poems/${poemId}/hearts`, genPostData({}, "DELETE") )
+        .then(res => res.text())
+        .then(json => {
+            heart = JSON.parse(json);   
+            updatePoemHeartContainer(i, giveHeartUI(i, poemId, hearts-1));
+        });
 }
 
 function showPoems(component_id, poems, poemIdFromHearts) {
