@@ -101,7 +101,7 @@ function editPoem(i) {
 }
 
 function updatePoem(body, id) {
-    fetch( `${base_api}/poems/${id}`, genPostData(body) )
+    fetch( `${base_api}/poems/${id}`, genPostData({body:body}, "PUT") )
         .then( console.log('Poem edited') );
 }
 
@@ -112,16 +112,40 @@ function genHeaders() {
     return myHeaders;
 }
 
-function genPostData(body) {
+function genPostData(body, method) {
     const postData = {
-        method: 'PUT',
-        body: JSON.stringify({body:body}, null, 2),
+        method: method,
+        body: JSON.stringify(body, null, 2),
         headers: genHeaders(),
         mode: 'cors'
     }
     return postData;
 }
 
+function updatePoemHeartContainer(i, content){
+    const heartContainer = document.querySelector(`#heart-container-${i}`);
+    if (heartContainer) {
+        heartContainer.innerHTML = content;
+    }
+}
+
+function giveHeart(i, poemId, hearts) {
+    fetch( `${base_api}/hearts/${poemId}`, genPostData({}, "POST") )
+        .then(res => res.text())
+        .then(json => {
+            heart = JSON.parse(json);   
+            updatePoemHeartContainer(i, takeBackHeartUI(i, poemId, hearts+1));
+        });
+}
+
+function takeBackHeart(i, poemId, hearts) {
+    fetch( `${base_api}/poems/${poemId}/hearts`, genPostData({}, "DELETE") )
+        .then(res => res.text())
+        .then(json => {
+            heart = JSON.parse(json);   
+            updatePoemHeartContainer(i, giveHeartUI(i, poemId, hearts-1));
+        });
+}
 
 function showPoems(component_id, poems, poemIdFromHearts) {
     let result = "";
@@ -135,30 +159,38 @@ function showPoems(component_id, poems, poemIdFromHearts) {
         ).toDateString()}</span>`;
 
         if (getAuthorInfo("_id") === p.author._id) {
-            result += `<div class="edit-btn" id="edit-btn-${i}" onclick="editPoem(${i})">Editar</div>`;
+            result += `<div class="edit-btn" title="Edit poem" id="edit-btn-${i}" onclick="editPoem(${i})">Edit</div>`;
         } 
                 
         result += `</div>
             <div class="body">
-                <input type="hidden" id="poem_${i}_id" value="${p._id}" />
-                <span class="title"><a href="/poem.html?p=${p._id}" class="no-decoration text-second">${p.title}</a></span>
-                <textarea id="poem_${i}" spellcheck="false" class="text poem-textarea" disabled>${p.body}</textarea>              
-            </div>`;
+                <span class="title" title="Take a better look"><a href="/poem.html?p=${p._id}" class="no-decoration text-second">${p.title}</a></span>
+                <textarea id="poem_${i}" spellcheck="false" class="text poem-textarea" disabled>${p.body}</textarea>       
+                <input type="hidden" id="poem_${i}_id" value="${p._id}" />       
+            </div><div id="heart-container-${i}">`;
 
         if (poemIdFromHearts) {
             if ( poemIdFromHearts.includes(p._id)) {
-                result += `<span class="float-right" title="heart" ><button id="like" class="btn bg-transparent" onclick=""><i class="fas fa-heart fa-lg" style="color:red"></i> ${p.hearts}</button></span>`;
+                result += takeBackHeartUI(i, p._id, p.hearts);
             } else {
-                result += `<span class="float-right" title="heart" ><button id="like" class="btn bg-transparent" onclick=""><i class="far fa-heart fa-lg" style="color:red"></i> ${p.hearts}</button></span>`;
+                result += giveHeartUI(i, p._id, p.hearts);
             }
         } else {
-            result += `<span class="float-right" title="heart" ><a href="/login.html" id="like" class="btn bg-transparent"><i class="far fa-heart fa-lg" style="color:red"></i> ${p.hearts}</a></span>`;
+            result += `<span class="float-right" title="Hearts" ><a href="/login.html" id="like" class="btn bg-transparent"><i class="far fa-heart fa-lg" style="color:red"></i> ${p.hearts}</a></span>`;
         }
-        result += `</article>
+        result += `</div></article>
         `;
     });
     document.getElementById(component_id).innerHTML += result;
     autosize(document.querySelectorAll("textarea.poem-textarea"));
+}
+
+function takeBackHeartUI(i, id, hearts){
+    return `<span class="float-right" title="Take back heart" id="take-back-heart-btn" onClick="takeBackHeart(${i}, '${id}', ${hearts})"><button id="like" class="btn bg-transparent" onclick=""><i class="fas fa-heart fa-lg" style="color:red"></i> ${hearts}</button></span>`;
+}
+
+function giveHeartUI(i, id, hearts){
+    return `<span class="float-right" title="Give heart" id="give-heart-btn" onClick="giveHeart(${i}, '${id}', ${hearts})"><button id="like" class="btn bg-transparent" onclick=""><i class="far fa-heart fa-lg" style="color:red"></i> ${hearts}</button></span>`;
 }
 
 function getAuthorInfo(key) {
