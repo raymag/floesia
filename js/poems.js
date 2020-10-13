@@ -190,7 +190,7 @@ function takeBackHeartUI(id, hearts) {
 }
 
 function giveHeartUI(id, hearts) {
-    return `<span class="float-right" title="Give heart" id="give-heart-btn" onClick="giveHeart($'${id}', ${hearts})"><button id="like" class="btn bg-transparent" onclick=""><i class="far fa-heart fa-lg" style="color:red"></i> ${hearts}</button></span>`;
+    return `<span class="float-right" title="Give heart" id="give-heart-btn" onClick="giveHeart('${id}', ${hearts})"><button id="like" class="btn bg-transparent" onclick=""><i class="far fa-heart fa-lg" style="color:red"></i> ${hearts}</button></span>`;
 }
 
 function getAuthorInfo(key) {
