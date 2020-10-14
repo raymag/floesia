@@ -12,7 +12,7 @@ window.onload = function () {
                             .then(hearts => getPoemIdFromHearts(hearts))
                             .then(poemIdFromHearts => showPoems("poems_show", poems, poemIdFromHearts, trending=trending));
                     } else {
-                        showPoems("poems_show", poems, trending=trending);
+                        showPoems("poems_show", poems, [], trending=trending);
                     }
                     addScrollListener();
                 });
@@ -25,7 +25,6 @@ function fetchTrending() {
             .then(res => res.text())
             .then(json => {
                 trending = JSON.parse(json);
-                console.log(trending);
                 resolve(trending);
             })
             .catch(err => {
