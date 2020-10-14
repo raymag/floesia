@@ -53,7 +53,7 @@ function addListenerToSubmitButton() {
                     data
                         .json()
                         .then(data => {
-                            location.href = '/';
+                            location.href = 'index.html';
                         })
                 }
             })
