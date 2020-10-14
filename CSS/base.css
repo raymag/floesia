@@ -285,6 +285,20 @@ main {
     margin: 8em auto;
 }
 
+.trending-label {
+    text-align: center;
+    width: 100%;
+    color: var(--erased);
+    margin-top: 1em;
+}
+
+.divider {
+    width: 60%;
+    margin: 1.25em auto;
+    height: 5px;
+    background-color: var(--erased);
+}
+
 /* DARK MODE */
 body.darkmode {
     background: #050505;
@@ -333,6 +347,14 @@ body.darkmode .box {
 
 body.darkmode #like {
     color: var(--white);
+}
+
+body.darkmode .trending-label {
+    color: var(--white);
+}
+
+body.darkmode .divider {
+    background-color: var(--white);
 }
 
 /* LOADING ANIMATION */

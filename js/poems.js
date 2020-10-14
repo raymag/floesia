@@ -3,19 +3,36 @@ var lastPage = 0;
 var base_api = "https://floesia-api.herokuapp.com";
 
 window.onload = function () {
-    fetchPoems()
-        .then(poems => {
-
-            if (isLogged()) {
-                fetchGivenHearts()
-                    .then(hearts => getPoemIdFromHearts(hearts))
-                    .then(poemIdFromHearts => showPoems("poems_show", poems, poemIdFromHearts));
-            } else {
-                showPoems("poems_show", poems);
-            }
-            addScrollListener();
-        })
+    fetchTrending()
+        .then(trending => {
+            fetchPoems()
+                .then(poems => {
+                    if (isLogged()) {
+                        fetchGivenHearts()
+                            .then(hearts => getPoemIdFromHearts(hearts))
+                            .then(poemIdFromHearts => showPoems("poems_show", poems, poemIdFromHearts, trending=trending));
+                    } else {
+                        showPoems("poems_show", poems, trending=trending);
+                    }
+                    addScrollListener();
+                });
+        });
 };
+
+function fetchTrending() {
+    return new Promise((resolve, reject) => {
+        fetch(`${base_api}/poems/trending`)
+            .then(res => res.text())
+            .then(json => {
+                trending = JSON.parse(json);
+                resolve(trending);
+            })
+            .catch(err => {
+                console.log(err);
+                resolve([]);
+            })
+    });
+}
 
 function fetchPoems() {
     return new Promise((resolve, reject) => {
@@ -155,10 +172,8 @@ function takeBackHeart(poemId, hearts) {
         });
 }
 
-function showPoems(component_id, poems, poemIdFromHearts) {
-    let result = "";
-    poems.forEach((p, i) => {
-        result += `
+function genArticle(p ,i, result, poemIdFromHearts){
+    result += `
         <article class="poem">
             <div class="info">
                 <span class="author">${p.author.username}</span>
@@ -188,6 +203,27 @@ function showPoems(component_id, poems, poemIdFromHearts) {
         }
         result += `</div></article>
         `;
+        return result;
+}
+
+function showPoems(component_id, poems, poemIdFromHearts, trending=[]) {
+    const trendingIds = trending.map(p => {
+        return p._id.poem._id;
+    });
+    let result = "";
+
+    if (trendingIds.length !== 0) {
+        result += `<h3 class="trending-label">Trendings</h3>`;
+        trending.forEach((p, i) => {
+            result = genArticle(p._id.poem, i, result, poemIdFromHearts);
+        })
+        result += "<div class='divider'></div>";
+    }
+
+    poems.forEach((p, i) => {
+        if (!trendingIds.includes(p._id)){
+            result = genArticle(p, i, result, poemIdFromHearts);
+        }
     });
     const overlay = document.querySelector("#overlay");
     if (overlay) {
