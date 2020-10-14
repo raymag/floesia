@@ -25,6 +25,7 @@ function fetchTrending() {
             .then(res => res.text())
             .then(json => {
                 trending = JSON.parse(json);
+                console.log(trending);
                 resolve(trending);
             })
             .catch(err => {
@@ -208,14 +209,14 @@ function genArticle(p ,i, result, poemIdFromHearts){
 
 function showPoems(component_id, poems, poemIdFromHearts, trending=[]) {
     const trendingIds = trending.map(p => {
-        return p._id.poem._id;
+        return p._id._id;
     });
     let result = "";
 
     if (trendingIds.length !== 0) {
         result += `<h3 class="trending-label">Trendings</h3>`;
         trending.forEach((p, i) => {
-            result = genArticle(p._id.poem, i, result, poemIdFromHearts);
+            result = genArticle(p._id, i, result, poemIdFromHearts);
         })
         result += "<div class='divider'></div>";
     }
