@@ -14,24 +14,24 @@ window.onload = () => {
 
 document.addEventListener('DOMContentLoaded', (event) => {
     try {
-        if(localStorage.getItem("tk")) {
-            document.getElementById("logout").style.display="block";
+        if (localStorage.getItem("tk")) {
+            document.getElementById("logout").style.display = "block";
         } else {
-            document.getElementById("logout").style.display="none";
+            document.getElementById("logout").style.display = "none";
         }
-    } catch {}
+    } catch { }
 })
 
 function isAuthenticated() {
-    if (localStorage.getItem('tk') ) {
+    if (localStorage.getItem('tk')) {
         location.href = "/";
     }
 }
 
 function login() {
     const credentials = getCredentials();
-    fetch( `${base_api}/login`, genPostData(credentials) )
-        .then( data => {
+    fetch(`${base_api}/login`, genPostData(credentials))
+        .then(data => {
             if (data.status === 404) {
                 redAlert('Incorrect email or password.')
             } else {
@@ -40,10 +40,10 @@ function login() {
                     .then(data => {
                         storeToken(data.token);
                         storeAuthor(data.author);
-                        location.href = '/';
+                        location.href = 'index.html';
                     })
             }
-         } )
+        })
         .catch((err) => {
             console.log(err);
             redAlert("Login failed.")

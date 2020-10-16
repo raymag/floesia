@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, shrink-to-fit=no" />
   <link rel="stylesheet" href="./CSS/base.css" />
   <link rel="stylesheet" href="./CSS/css_bootstrap/bootstrap.min.css">
   <script src="https://kit.fontawesome.com/4e6c6808e1.js" crossorigin="anonymous"></script>
@@ -12,7 +12,12 @@
   <script src="./js/login.js"></script>
   <title>Floesia</title>
 </head>
+
 <body>
+
+  <div id="overlay">
+    <div class="spinner"></div>
+  </div>
 
   <nav id="navbar">
     <div id="navbar-brand">
@@ -46,6 +51,11 @@
   </nav>
 
   <main id="poems">
+
+    <div>
+      <button type="button" id="add-poem-btn" class="btn primary-btn">Add Poem</button>
+    </div>
+
     <div class="container">
       <div class="row" id="poems_show">
       </div>
@@ -68,4 +78,5 @@
   <script src="js/darkmode.js"></script>
 
 </body>
+
 </html>

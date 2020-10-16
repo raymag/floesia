@@ -285,6 +285,20 @@ main {
     margin: 8em auto;
 }
 
+.trending-label {
+    text-align: center;
+    width: 100%;
+    color: var(--erased);
+    margin-top: 1em;
+}
+
+.divider {
+    width: 60%;
+    margin: 1.25em auto;
+    height: 5px;
+    background-color: var(--erased);
+}
+
 /* DARK MODE */
 body.darkmode {
     background: #050505;
@@ -329,4 +343,48 @@ body.darkmode .box {
     background: #060606;
     color: var(--primary);
     border: solid 1px var(--second);
+}
+
+body.darkmode #like {
+    color: var(--white);
+}
+
+body.darkmode .trending-label {
+    color: var(--white);
+}
+
+body.darkmode .divider {
+    background-color: var(--white);
+}
+
+/* LOADING ANIMATION */
+#overlay {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    float: left;
+    text-align: center;
+    padding-top: 25%;
+}
+
+.spinner {
+    margin: 0 auto;
+    height: 64px;
+    width: 64px;
+    animation: rotate 0.8s infinite linear;
+    border: 5px solid var(--primary);
+    border-right-color: transparent;
+    border-radius: 50%;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }

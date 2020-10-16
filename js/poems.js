@@ -3,12 +3,36 @@ var lastPage = 0;
 var base_api = "https://floesia-api.herokuapp.com";
 
 window.onload = function () {
-    fetchPoems()
-        .then(poems => {
-            showPoems("poems_show", poems);
-            addScrollListener();
-        })
+    fetchTrending()
+        .then(trending => {
+            fetchPoems()
+                .then(poems => {
+                    if (isLogged()) {
+                        fetchGivenHearts()
+                            .then(hearts => getPoemIdFromHearts(hearts))
+                            .then(poemIdFromHearts => showPoems("poems_show", poems, poemIdFromHearts, trending=trending));
+                    } else {
+                        showPoems("poems_show", poems, [], trending=trending);
+                    }
+                    addScrollListener();
+                });
+        });
 };
+
+function fetchTrending() {
+    return new Promise((resolve, reject) => {
+        fetch(`${base_api}/poems/trending`)
+            .then(res => res.text())
+            .then(json => {
+                trending = JSON.parse(json);
+                resolve(trending);
+            })
+            .catch(err => {
+                console.log(err);
+                resolve([]);
+            })
+    });
+}
 
 function fetchPoems() {
     return new Promise((resolve, reject) => {
@@ -16,7 +40,7 @@ function fetchPoems() {
         fetch(`${base_api}/poems?page=${page}`)
             .then(res => res.text())
             .then(json => {
-                poems = JSON.parse(json);   
+                poems = JSON.parse(json);
                 if (poems.poems.length !== 0) {
                     page++;
                 }
@@ -28,11 +52,35 @@ function fetchPoems() {
     });
 }
 
+function fetchGivenHearts() {
+    return new Promise((resolve, reject) => {
+        fetch(`${base_api}/author/${getAuthorInfo("_id")}/hearts`)
+            .then(res => res.text())
+            .then(json => {
+                hearts = JSON.parse(json);
+                resolve(hearts);
+            })
+            .catch(err => {
+                reject([]);
+            })
+    });
+}
+
+function getPoemIdFromHearts(hearts) {
+    return new Promise((resolve, reject) => {
+        const poemIdFromHearts = [];
+        hearts.forEach(heart => {
+            poemIdFromHearts.push(heart.poem);
+        });
+        resolve(poemIdFromHearts);
+    });
+}
+
 function addScrollListener() {
     window.addEventListener("scroll", () => {
         const d = document.documentElement;
 
-        const scrollPosition = d.scrollTop + window.innerHeight;
+        const scrollPosition = Math.max(d.scrollTop, window.pageYOffset) + window.innerHeight;
         const scrollTarget = d.offsetHeight - 1000;
 
         if (scrollPosition >= scrollTarget) {
@@ -45,33 +93,41 @@ function addScrollListener() {
 
 function loadMore() {
     fetchPoems(page)
-        .then(poems => showPoems("poems_show", poems));
+        .then(poems => {
+            if (isLogged()) {
+                fetchGivenHearts()
+                    .then(hearts => getPoemIdFromHearts(hearts))
+                    .then(poemIdFromHearts => showPoems("poems_show", poems, poemIdFromHearts));
+            } else {
+                showPoems("poems_show", poems)
+            }
+        });
 }
 
 
-function editPoem(i) {
+function editPoem(id) {
 
-    if (!document.querySelector(`#poem_${i}`).disabled) {
-        const body = document.querySelector(`#poem_${i}`).value;
-        const poemId = document.querySelector(`#poem_${i}_id`).value;
+    if (!document.querySelector(`#poem_${id}`).disabled) {
+        const body = document.querySelector(`#poem_${id}`).value;
+        const poemId = document.querySelector(`#poem_${id}_id`).value;
         updatePoem(body, poemId);
     }
 
-    document.getElementById(`poem_${i}`).disabled = !document.getElementById(
-        `poem_${i}`
+    document.getElementById(`poem_${id}`).disabled = !document.getElementById(
+        `poem_${id}`
     ).disabled;
-    if (!document.getElementById(`poem_${i}`).disabled)
-        document.getElementById(`poem_${i}`).focus();
+    if (!document.getElementById(`poem_${id}`).disabled)
+        document.getElementById(`poem_${id}`).focus();
     document.getElementById(
-        `edit-btn-${i}`
-    ).innerText = document.getElementById(`poem_${i}`).disabled
-            ? "Editar"
-            : "Concluido";
+        `edit-btn-${id}`
+    ).innerText = document.getElementById(`poem_${id}`).disabled
+            ? "Edit"
+            : "Confirm";
 }
 
 function updatePoem(body, id) {
-    fetch( `${base_api}/poems/${id}`, genPostData(body) )
-        .then( console.log('Poem edited') );
+    fetch(`${base_api}/poems/${id}`, genPostData({ body: body }, "PUT"))
+        .then(console.log('Poem edited'));
 }
 
 function genHeaders() {
@@ -81,21 +137,43 @@ function genHeaders() {
     return myHeaders;
 }
 
-function genPostData(body) {
+function genPostData(body, method) {
     const postData = {
-        method: 'PUT',
-        body: JSON.stringify({body:body}, null, 2),
+        method: method,
+        body: JSON.stringify(body, null, 2),
         headers: genHeaders(),
         mode: 'cors'
     }
     return postData;
 }
 
+function updatePoemHeartContainer(poemId, content) {
+    const heartContainer = document.querySelector(`#heart-container-${poemId}`);
+    if (heartContainer) {
+        heartContainer.innerHTML = content;
+    }
+}
 
-function showPoems(component_id, poems) {
-    let result = "";
-    poems.forEach((p, i) => {
-        result += `
+function giveHeart(poemId, hearts) {
+    fetch(`${base_api}/hearts/${poemId}`, genPostData({}, "POST"))
+        .then(res => res.text())
+        .then(json => {
+            heart = JSON.parse(json);
+            updatePoemHeartContainer(poemId, takeBackHeartUI(poemId, hearts + 1));
+        });
+}
+
+function takeBackHeart(poemId, hearts) {
+    fetch(`${base_api}/poems/${poemId}/hearts`, genPostData({}, "DELETE"))
+        .then(res => res.text())
+        .then(json => {
+            heart = JSON.parse(json);
+            updatePoemHeartContainer(poemId, giveHeartUI(poemId, hearts - 1));
+        });
+}
+
+function genArticle(p ,i, result, poemIdFromHearts){
+    result += `
         <article class="poem">
             <div class="info">
                 <span class="author">${p.author.username}</span>
@@ -104,21 +182,63 @@ function showPoems(component_id, poems) {
         ).toDateString()}</span>`;
 
         if (getAuthorInfo("_id") === p.author._id) {
-            result += `<div class="edit-btn" id="edit-btn-${i}" onclick="editPoem(${i})">Editar</div>`;
-        } 
-                
+            result += `<div class="edit-btn" title="Edit poem" id="edit-btn-${p._id}" onclick="editPoem('${p._id}')">Edit</div>`;
+        }
+
         result += `</div>
             <div class="body">
-                <input type="hidden" id="poem_${i}_id" value="${p._id}" />
-                <span class="title"><a href="/poem.html?p=${p._id}" class="no-decoration text-second">${p.title}</a></span>
-                <textarea id="poem_${i}" spellcheck="false" class="text poem-textarea" disabled>${p.body}</textarea>              
-            </div>
-            <span class="float-right"><button id="like" class="btn bg-transparent" onclick=""><i class="far fa-heart fa-lg" style="color:red"></i> 25</button></span> 
-        </article>
+                <span class="title" title="Take a better look"><a href="/poem.html?p=${p._id}" class="no-decoration text-second">${p.title}</a></span>
+                <textarea id="poem_${p._id}" spellcheck="false" class="text poem-textarea" disabled>${p.body}</textarea>       
+                <input type="hidden" id="poem_${p._id}_id" value="${p._id}" />       
+            </div><div id="heart-container-${p._id}">`;
+
+        if (poemIdFromHearts) {
+            if (poemIdFromHearts.includes(p._id)) {
+                result += takeBackHeartUI(p._id, p.hearts);
+            } else {
+                result += giveHeartUI(p._id, p.hearts);
+            }
+        } else {
+            result += `<span class="float-right" title="Hearts" ><a href="/login.html" id="like" class="btn bg-transparent"><i class="far fa-heart fa-lg" style="color:red"></i> ${p.hearts}</a></span>`;
+        }
+        result += `</div></article>
         `;
+        return result;
+}
+
+function showPoems(component_id, poems, poemIdFromHearts, trending=[]) {
+    const trendingIds = trending.map(p => {
+        return p._id._id;
     });
+    let result = "";
+
+    if (trendingIds.length !== 0) {
+        result += `<h3 class="trending-label">Trendings</h3>`;
+        trending.forEach((p, i) => {
+            result = genArticle(p._id, i, result, poemIdFromHearts);
+        })
+        result += "<div class='divider'></div>";
+    }
+
+    poems.forEach((p, i) => {
+        if (!trendingIds.includes(p._id)){
+            result = genArticle(p, i, result, poemIdFromHearts);
+        }
+    });
+    const overlay = document.querySelector("#overlay");
+    if (overlay) {
+        overlay.remove();
+    }
     document.getElementById(component_id).innerHTML += result;
     autosize(document.querySelectorAll("textarea.poem-textarea"));
+}
+
+function takeBackHeartUI(id, hearts) {
+    return `<span class="float-right" title="Take back heart" id="take-back-heart-btn" onClick="takeBackHeart('${id}', ${hearts})"><button id="like" class="btn bg-transparent" onclick=""><i class="fas fa-heart fa-lg" style="color:red"></i> ${hearts}</button></span>`;
+}
+
+function giveHeartUI(id, hearts) {
+    return `<span class="float-right" title="Give heart" id="give-heart-btn" onClick="giveHeart('${id}', ${hearts})"><button id="like" class="btn bg-transparent" onclick=""><i class="far fa-heart fa-lg" style="color:red"></i> ${hearts}</button></span>`;
 }
 
 function getAuthorInfo(key) {
