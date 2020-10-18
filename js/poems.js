@@ -19,6 +19,10 @@ window.onload = function () {
         });
 };
 
+function isLogged() {
+    return localStorage.getItem("tk");
+}
+
 function fetchTrending() {
     return new Promise((resolve, reject) => {
         fetch(`${base_api}/poems/trending`)
@@ -155,6 +159,7 @@ function updatePoemHeartContainer(poemId, content) {
 }
 
 function giveHeart(poemId, hearts) {
+    console.log(hearts)
     fetch(`${base_api}/hearts/${poemId}`, genPostData({}, "POST"))
         .then(res => res.text())
         .then(json => {
@@ -192,7 +197,7 @@ function genArticle(p ,i, result, poemIdFromHearts){
                 <input type="hidden" id="poem_${p._id}_id" value="${p._id}" />       
             </div><div id="heart-container-${p._id}">`;
 
-        if (poemIdFromHearts) {
+        if (isLogged()) {
             if (poemIdFromHearts.includes(p._id)) {
                 result += takeBackHeartUI(p._id, p.hearts);
             } else {
