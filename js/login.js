@@ -40,7 +40,7 @@ function login() {
                     .then(data => {
                         storeToken(data.token);
                         storeAuthor(data.author);
-                        location.href = '/';
+                        location.href = 'index.html';
                     })
             }
         })

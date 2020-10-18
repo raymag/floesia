@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap&family=Sansita+Swashed&display=swap');
 
 * {
     --primary: #62D8C2;
@@ -49,6 +49,8 @@ nav#navbar {
 #navbar-brand h1 {
     padding: 0;
     margin: 0;
+    font-family: 'Sansita Swashed', cursive;
+    
 }
 
 .theme-toggle-button{
@@ -285,6 +287,20 @@ main {
     margin: 8em auto;
 }
 
+.trending-label {
+    text-align: center;
+    width: 100%;
+    color: var(--erased);
+    margin-top: 1em;
+}
+
+.divider {
+    width: 60%;
+    margin: 1.25em auto;
+    height: 5px;
+    background-color: var(--erased);
+}
+
 /* DARK MODE */
 body.darkmode {
     background: #050505;
@@ -333,6 +349,14 @@ body.darkmode .box {
 
 body.darkmode #like {
     color: var(--white);
+}
+
+body.darkmode .trending-label {
+    color: var(--white);
+}
+
+body.darkmode .divider {
+    background-color: var(--white);
 }
 
 /* LOADING ANIMATION */

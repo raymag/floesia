@@ -1,7 +1,7 @@
 const base_api = "https://floesia-api.herokuapp.com";
 
 if (isLogged()) {
-    location.href = "/";
+    location.href = "index.html";
 }
 
 function isLogged() {

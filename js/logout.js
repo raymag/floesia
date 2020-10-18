@@ -7,6 +7,6 @@ const logout = () => {
         localStorage.removeItem("aid");
         localStorage.removeItem("aem");
 
-        location.href = "/";
+        location.href = "index.html";
     }
 }
