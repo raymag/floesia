@@ -16,7 +16,7 @@ body{
     width: 800px;
     height: 750px;
     background-color: white;
-    margin-top: 100px;
+    margin-top: 190px;
 }
 #corpo{
     margin: 10px;
@@ -26,8 +26,12 @@ body{
     text-align: center;
 }
 #logo{
-    width: 100%;
-    height: 75px;
-    background-color: aquamarine;
+    background-color: #62d8c2;
+    font-family: 'Roboto', monospace, Verdana, Tahoma, sans-serif;
     position: fixed;
+    width: 100%;
+    padding: 12px 20px;
+    left: 0px;
+    top: 0px;
+    color: white;
 }
